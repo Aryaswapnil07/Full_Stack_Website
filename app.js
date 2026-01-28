@@ -16,7 +16,7 @@ async function main() {
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+app.use(express.urlencoded({extended:true}));
 app.get("/", (req, res) => {
   res.send("HI I am root");
 });
@@ -24,10 +24,16 @@ app.get("/", (req, res) => {
 
  // index route to display all listings
 
- 
+
 app.get("/listings", async (req, res) => {
   const listings = await Listing.find({});
   res.render("listings/index.ejs", { listings });
+});
+
+// Show route to display 
+app.get("listings/:id", async(req , res) => {
+  let {id} = req.params;
+  const listing = await Listing.findById(id);
 });
 
 app.listen(8080, () => {
