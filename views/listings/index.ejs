@@ -11,9 +11,14 @@
 
 <ul>
   <% for (let listing of listings) { %>
-    <li><a href="/listings/<%= listing._id %>a"><%= listing.title %> </a></li>
+    <li>
+      <a href="/listings/<%= listing._id %>">
+        <%= listing.title %>
+      </a>
+    </li>
   <% } %>
 </ul>
+
 
 </body>
 </html>
